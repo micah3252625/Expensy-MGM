@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Expensy-MGM</string>
+    <string name="my_expenses">My Expenses</string>
+    <string name="search_expenses">Search expenses...</string>
 </resources>
