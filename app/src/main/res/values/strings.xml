@@ -2,4 +2,7 @@
     <string name="app_name">Expensy-MGM</string>
     <string name="my_expenses">My Expenses</string>
     <string name="search_expenses">Search expenses...</string>
+    <string name="expense_amount">Expense Amount</string>
+    <string name="expense_category">Expense Category</string>
+    <string name="type_expense_description_here">Type expense description here...</string>
 </resources>
