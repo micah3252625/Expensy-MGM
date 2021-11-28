@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutExpense"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_5sdp"
+    android:layout_marginEnd="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_12sdp"
+    android:elevation="@dimen/_8sdp"
+    android:background="@drawable/background_expense">
+
+    <TextView
+        android:id="@+id/textAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:drawableStart="@drawable/ic_peso"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorWhite"
+        android:paddingBottom="@dimen/_2sdp"
+        android:textSize="@dimen/_15ssp"
+        />
+    
+    <TextView
+        android:id="@+id/textCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:fontFamily="@font/ubuntu_regular"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorTextSubtitle"
+        android:textSize="@dimen/_12ssp"/>
+
+    <TextView
+        android:id="@+id/textDateTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:fontFamily="@font/ubuntu_regular"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorTextSubtitle"
+        android:textSize="@dimen/_7ssp"
+        />
+</LinearLayout>
