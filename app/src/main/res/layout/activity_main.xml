@@ -36,14 +36,14 @@
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@+id/textMyExpenses">
-        
+
         <ImageView
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search"
             android:tint="@color/colorWhite"/>
-        
+
         <EditText
             android:id="@+id/inputSearch"
             android:layout_width="match_parent"
@@ -58,22 +58,91 @@
             android:inputType="text"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorTextHint"
-            android:textSize="@dimen/_13ssp"
-            />
+            android:textSize="@dimen/_13ssp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutIncome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:paddingTop="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_20sdp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/background_search"
+        app:layout_constraintTop_toBottomOf="@+id/layoutSearch"
+        app:layout_constraintBottom_toTopOf="@id/expenseRecyclerView">
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_peso_32"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:tint="@color/colorWhite"/>
+
+        <TextView
+            android:id="@+id/textIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:clipToPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:text="0"
+            android:textSize="@dimen/_32ssp" />
+
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageAddIncome"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="@id/layoutIncome"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_add"
+        android:tint="@color/colorIcons"
+        android:contentDescription="@string/app_name">
+
+    </ImageView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/expenseRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_2sdp"
-        android:layout_marginEnd="@dimen/_2sdp"
         android:clipToPadding="false"
         android:paddingStart="@dimen/_12sdp"
         android:paddingEnd="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
         app:layout_constraintBottom_toTopOf="@id/layoutQuickActions"
-        app:layout_constraintTop_toBottomOf="@id/layoutSearch"/>
+        app:layout_constraintTop_toBottomOf="@id/layoutIncome"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <LinearLayout
+        android:id="@+id/layoutAddIncome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="@id/expenseRecyclerView">
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/layoutQuickActions"
@@ -82,25 +151,27 @@
         android:background="@color/colorQuickActionsBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:elevation="@dimen/_5sdp"
         android:padding="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent">
-        
-        <ImageView
-            android:id="@+id/imageAddExpense"
+        <!--
+       <ImageView
+            android:id="@+id/imageList"
             android:layout_width="@dimen/_23sdp"
             android:layout_height="@dimen/_23sdp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_add_outline"
-            android:tint="@color/colorIcons" />
+            android:src="@drawable/ic_list"
+            android:tint="@color/colorIcons" />-->
 
         <ImageView
-            android:id="@+id/imageAddCategory"
+            android:id="@+id/imageAnalytics"
             android:layout_width="@dimen/_23sdp"
             android:layout_height="@dimen/_23sdp"
             android:layout_marginStart="@dimen/_15sdp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_category"
-            android:tint="@color/colorIcons"/>
+            android:src="@drawable/ic_analytics"
+            android:tint="@color/colorIcons" />
+
     </LinearLayout>
 
     <ImageView
@@ -112,9 +183,19 @@
         android:contentDescription="@string/app_name"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_add"
+        android:elevation="@dimen/_12sdp"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@id/layoutQuickActions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/layoutQuickActions"/>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutQuickActions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

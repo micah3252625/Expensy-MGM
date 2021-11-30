@@ -3,6 +3,7 @@ package com.example.expensy_mgm.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,15 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.expensy_mgm.R;
 import com.example.expensy_mgm.entities.Expense;
+import com.example.expensy_mgm.listeners.ExpenseListener;
 
 import java.util.List;
 
 public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ExpenseViewHolder>{
 
     private List<Expense> expenses;
+    private ExpenseListener expenseListener;
 
-    public ExpensesAdapter(List<Expense> expenses) {
+    public ExpensesAdapter(List<Expense> expenses, ExpenseListener expenseListener) {
         this.expenses = expenses;
+        this.expenseListener = expenseListener;
     }
 
     @NonNull
@@ -36,6 +40,9 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
     @Override
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
         holder.setExpense(expenses.get(position));
+        holder.layoutExpense.setOnClickListener(view -> {
+            expenseListener.onExpenseClicked(expenses.get(position), position);
+        });
     }
 
     @Override
@@ -49,7 +56,7 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
     }
 
     static class ExpenseViewHolder extends RecyclerView.ViewHolder {
-
+        LinearLayout layoutExpense;
         TextView textAmount, textCategory, textDateTime;
 
         public ExpenseViewHolder(@NonNull View itemView) {
@@ -57,6 +64,7 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
             textAmount = itemView.findViewById(R.id.textAmount);
             textCategory = itemView.findViewById(R.id.textCategory);
             textDateTime = itemView.findViewById(R.id.textDateTime);
+            layoutExpense = itemView.findViewById(R.id.layoutExpense);
         }
 
         void setExpense(Expense expense) {

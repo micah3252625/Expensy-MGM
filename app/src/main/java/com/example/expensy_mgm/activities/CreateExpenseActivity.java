@@ -6,7 +6,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,8 +25,12 @@ import java.util.Locale;
 
 public class CreateExpenseActivity extends AppCompatActivity {
 
-    private EditText inputExpenseAmount, inputExpenseCategory, inputExpenseDescription;
+    private EditText inputExpenseAmount, inputExpenseDescription;
     private TextView textDateTime;
+    private AutoCompleteTextView inputExpenseCategory;
+
+    private Expense alreadyAvailableExpense;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +54,26 @@ public class CreateExpenseActivity extends AppCompatActivity {
         );
 
         ImageView imageSave = findViewById(R.id.imageSave);
-        imageSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveExpense();
-                Toast.makeText(CreateExpenseActivity.this, "Expense added!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        imageSave.setOnClickListener(view -> saveExpense());
 
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, EXPENSES);
+        inputExpenseCategory.setAdapter(adapter);
+
+        inputExpenseCategory.setOnTouchListener((view, motionEvent) -> true) ;
+
+        if (getIntent().getBooleanExtra("isViewOrUpdate", false)) {
+            alreadyAvailableExpense = (Expense) getIntent().getSerializableExtra("expense");
+            setViewOrUpdateExpense();
+        }
+    }
+
+    private void setViewOrUpdateExpense() {
+        inputExpenseAmount.setText(Double.toString(alreadyAvailableExpense.getAmount()));
+        inputExpenseCategory.setText(alreadyAvailableExpense.getCategory());
+        inputExpenseDescription.setText(alreadyAvailableExpense.getDescription());
+        textDateTime.setText(alreadyAvailableExpense.getDateTime());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, EXPENSES);
+        inputExpenseCategory.setAdapter(adapter);
     }
 
     // function that parses the string to double
@@ -69,6 +88,7 @@ public class CreateExpenseActivity extends AppCompatActivity {
         else
             return 0;
     }
+
 
     private void saveExpense() {
         // input validation
@@ -94,6 +114,9 @@ public class CreateExpenseActivity extends AppCompatActivity {
         expense.setDescription(inputExpenseDescription.getText().toString());
         expense.setDateTime(textDateTime.getText().toString());
 
+        if (alreadyAvailableExpense != null)
+            expense.setId(alreadyAvailableExpense.getId());
+
         @SuppressLint("StaticFieldLeak")
         class SaveExpenseTask extends AsyncTask<Void, Void, Void> {
 
@@ -115,4 +138,11 @@ public class CreateExpenseActivity extends AppCompatActivity {
         new SaveExpenseTask().execute();
 
     }
+
+
+    private static final String[] EXPENSES = new String[]{
+            "Food", "Clothes", "Netflix", "Entertainment", "Gas", "Technology", "Miscellaneous"
+    };
+
+
 }
