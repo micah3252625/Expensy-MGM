@@ -1,5 +1,7 @@
 package com.example.expensy_mgm.adapters;
 
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +15,23 @@ import com.example.expensy_mgm.R;
 import com.example.expensy_mgm.entities.Expense;
 import com.example.expensy_mgm.listeners.ExpenseListener;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import android.os.Handler;
 
 public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ExpenseViewHolder>{
 
     private List<Expense> expenses;
     private ExpenseListener expenseListener;
+    private Timer timer;
+    private List<Expense> expensesSource;
 
     public ExpensesAdapter(List<Expense> expenses, ExpenseListener expenseListener) {
         this.expenses = expenses;
         this.expenseListener = expenseListener;
+        expensesSource = expenses;
     }
 
     @NonNull
@@ -78,5 +87,46 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
             }
             textDateTime.setText(expense.getDateTime());
         }
+
+
     }
+
+    public double totalExpenseAmount() {
+        double amount = 0.0;
+        for (Expense expense : expenses) {
+            amount += expense.getAmount();
+        }
+        return amount;
+    }
+
+    public void searchExpense(final String searchKeyword) {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (searchKeyword.trim().isEmpty()) {
+                    expenses = expensesSource;
+                }
+                else {
+                    ArrayList<Expense> temp = new ArrayList<>();
+                    for (Expense expense : expensesSource) {
+                        if (expense.getCategory().toLowerCase().contains(searchKeyword.toLowerCase())
+                            || expense.getDescription().toLowerCase().contains(searchKeyword.toLowerCase())
+                            || expense.getDateTime().toLowerCase().contains(searchKeyword.toLowerCase())) {
+                            temp.add(expense);
+                        }
+                    }
+                    expenses = temp;
+                }
+                new Handler(Looper.getMainLooper()).post(() -> notifyDataSetChanged());
+            }
+        }, 500);
+    }
+
+    public void cancelTimer() {
+        if (timer != null) {
+            timer.cancel();
+        }
+    }
+
 }

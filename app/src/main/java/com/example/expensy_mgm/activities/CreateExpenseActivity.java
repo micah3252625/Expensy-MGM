@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -20,17 +20,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.expensy_mgm.R;
+import com.example.expensy_mgm.dao.CategoryDao;
 import com.example.expensy_mgm.database.ExpensyDatabase;
+import com.example.expensy_mgm.entities.Category;
 import com.example.expensy_mgm.entities.Expense;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 public class CreateExpenseActivity extends AppCompatActivity {
 
     private EditText inputExpenseAmount, inputExpenseDescription;
-    private TextView textDateTime;
+    private TextView textDateTime, textIncome;
     private AutoCompleteTextView inputExpenseCategory;
 
     private Expense alreadyAvailableExpense;
@@ -38,6 +43,10 @@ public class CreateExpenseActivity extends AppCompatActivity {
     private ImageView imageDelete;
 
     private AlertDialog dialogDeleteExpense;
+
+    private CategoryDao categoryDao;
+    private List<Category> categoryList;
+    private ArrayList<String> categories = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +62,10 @@ public class CreateExpenseActivity extends AppCompatActivity {
         inputExpenseCategory = findViewById(R.id.inputExpenseCategory);
         inputExpenseDescription = findViewById(R.id.inputExpenseDescription);
         textDateTime = findViewById(R.id.textDateTime);
-
+        textIncome = findViewById(R.id.textIncome);
         //
         imageDelete = findViewById(R.id.imageDelete);
-        imageDelete.setOnClickListener(view -> {
-            showDeleteExpenseDialog();
-
-        });
+        imageDelete.setOnClickListener(view -> showDeleteExpenseDialog());
 
         // set the textDateTime
         textDateTime.setText(
@@ -68,11 +74,9 @@ public class CreateExpenseActivity extends AppCompatActivity {
         );
 
         ImageView imageSave = findViewById(R.id.imageSave);
-        imageSave.setOnClickListener(view -> saveExpense());
-
-        // sets the dropdown list
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, EXPENSES);
-        inputExpenseCategory.setAdapter(adapter);
+        imageSave.setOnClickListener(view -> {
+            saveExpense();
+        });
 
         inputExpenseCategory.setOnTouchListener((view, motionEvent) -> true) ;
 
@@ -80,6 +84,29 @@ public class CreateExpenseActivity extends AppCompatActivity {
             alreadyAvailableExpense = (Expense) getIntent().getSerializableExtra("expense");
             setViewOrUpdateExpense();
         }
+
+
+        Integer size = 0;
+        try {
+            size = getCountCategories();
+            for (int i = 0; i < size; i++) {
+                categories.add(getCategories().get(i).getCategory_name());
+                //Log.i("value", categories.get(i));
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        CATEGORIES = categories.toArray(new String[categories.size()]);
+
+        for (String i : CATEGORIES) {
+            Log.i("value", i);
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, CATEGORIES);
+        inputExpenseCategory.setAdapter(adapter);
+
     }
 
     // this function sets handles the setting of viewing and updating the expense
@@ -90,15 +117,16 @@ public class CreateExpenseActivity extends AppCompatActivity {
         textDateTime.setText(alreadyAvailableExpense.getDateTime());
 
         // reinitialize the dropdown list
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, EXPENSES);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, CATEGORIES);
         inputExpenseCategory.setAdapter(adapter);
 
         // show the delete icon when only viewing the expense
         imageDelete.setVisibility(View.VISIBLE);
+
     }
 
     // function that parses the string to double
-    float parseDouble(String strAmount) {
+    double parseDouble(String strAmount) {
         if (strAmount != null && strAmount.length() > 0) {
             try {
                 return Float.parseFloat(strAmount);
@@ -110,6 +138,38 @@ public class CreateExpenseActivity extends AppCompatActivity {
             return 0;
     }
 
+    private Integer getCountCategories() throws ExecutionException, InterruptedException {
+        class GetCountCategoriesTask extends AsyncTask<Void, Void, Integer> {
+
+            @Override
+            protected Integer doInBackground(Void... voids) {
+                return ExpensyDatabase.getExpensyDatabase(CreateExpenseActivity.this)
+                        .categoryDao().getCount();
+            }
+
+            @Override
+            protected void onPostExecute(Integer integer) {
+                super.onPostExecute(integer);
+            }
+        }
+        return new GetCountCategoriesTask().execute().get();
+    }
+
+    private List<Category> getCategories() throws ExecutionException, InterruptedException {
+        class GetCategoriesTask extends AsyncTask<Void, Void, List<Category>> {
+            @Override
+            protected List<Category> doInBackground(Void... voids) {
+                return ExpensyDatabase.getExpensyDatabase(CreateExpenseActivity.this)
+                        .categoryDao().getAllCategory();
+            }
+
+            @Override
+            protected void onPostExecute(List<Category> aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        }
+        return new GetCategoriesTask().execute().get();
+    }
 
     private void saveExpense() {
         // input validation
@@ -209,9 +269,6 @@ public class CreateExpenseActivity extends AppCompatActivity {
         dialogDeleteExpense.show();
     }
 
-    private static final String[] EXPENSES = new String[]{
-            "Food", "Clothes", "Netflix", "Entertainment", "Gas", "Technology", "Miscellaneous"
-    };
-
+   public String[] CATEGORIES = categories.toArray(new String[categories.size()]);
 
 }

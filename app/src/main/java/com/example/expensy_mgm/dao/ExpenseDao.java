@@ -16,6 +16,9 @@ public interface ExpenseDao {
     @Query("SELECT * FROM expenses ORDER BY id DESC")
     List<Expense> getAllExpenses();
 
+    @Query("SELECT amount FROM expenses WHERE id = (SELECT MAX(id) FROM expenses) limit 1")
+    double getAmountExpense();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertExpense(Expense expense);
 
