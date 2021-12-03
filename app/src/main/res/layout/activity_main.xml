@@ -10,9 +10,9 @@
 
     <TextView
         android:id="@+id/textMyExpenses"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:fontFamily="@font/ubuntu_bold"
@@ -21,6 +21,20 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_20sdp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/imageMore"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_more"
+        android:tint="@color/colorIcons"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_10sdp"
         />
 
     <LinearLayout
@@ -61,6 +75,24 @@
             android:textSize="@dimen/_13ssp" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_matches_found"
+        android:includeFontPadding="false"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:textColor="@color/colorTextHint"
+        android:textSize="@dimen/_12sdp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutSearch"
+        app:layout_constraintBottom_toTopOf="@id/expenseRecyclerView"
+        />
+
     <LinearLayout
         android:id="@+id/layoutIncome"
         android:layout_width="match_parent"
@@ -72,6 +104,7 @@
         android:paddingTop="@dimen/_20sdp"
         android:paddingBottom="@dimen/_20sdp"
         android:gravity="center"
+        android:visibility="visible"
         android:orientation="horizontal"
         android:background="@drawable/background_search"
         app:layout_constraintTop_toBottomOf="@+id/layoutSearch"
@@ -141,8 +174,21 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="@id/expenseRecyclerView">
 
+
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layoutAddCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="@id/expenseRecyclerView">
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layoutQuickActions"
@@ -164,12 +210,12 @@
             android:tint="@color/colorIcons" />-->
 
         <ImageView
-            android:id="@+id/imageAnalytics"
-            android:layout_width="@dimen/_23sdp"
-            android:layout_height="@dimen/_23sdp"
+            android:id="@+id/imageAddCategory"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:layout_marginStart="@dimen/_15sdp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_analytics"
+            android:src="@drawable/ic_add_outline"
             android:tint="@color/colorIcons" />
 
     </LinearLayout>
@@ -196,6 +242,7 @@
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/layoutQuickActions"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"></FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

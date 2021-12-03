@@ -67,13 +67,14 @@
                 android:background="@null"
                 android:fontFamily="@font/ubuntu_bold"
                 android:hint="@string/expense_amount"
-                android:drawableEnd="@drawable/ic_peso"
+                android:drawablePadding="@dimen/_8sdp"
+                android:drawableStart="@drawable/ic_peso"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="numberDecimal"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorTextHint"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_18ssp"
                 app:layout_constraintTop_toBottomOf="@id/imageBack"
                 />
             <TextView

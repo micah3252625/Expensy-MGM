@@ -15,4 +15,16 @@
     <string name="expenses_for">Expenses For</string>
     <string name="delete_expense">Delete Expense</string>
     <string name="are_you_sure_you_want_to_delete_this_expense">Are you sure you want to delete this expense?</string>
+    <string name="no_matches_found">No Matches Found</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="mgm_team">MGM Team</string>
+    <string name="project_manager">Project Manager</string>
+    <string name="gio_dimaculangan">Gio Dimaculangan</string>
+    <string name="scrum_master">Scrum Master</string>
+    <string name="micah_mustaham">Micah Mustaham</string>
+    <string name="mark_barroquillo">Mark Barroquillo</string>
+    <string name="add_category">Add Category</string>
+    <string name="enter_category">Enter Category</string>
 </resources>
