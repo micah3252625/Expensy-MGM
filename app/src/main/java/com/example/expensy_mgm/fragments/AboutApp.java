@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.expensy_mgm.R;
 
@@ -60,7 +62,22 @@ public class AboutApp extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_about_app, container, false);
+
+        // LINKIFY
+        TextView textGithub_url = view.findViewById(R.id.textGithub_url);
+        textGithub_url.setText("https://github.com/micah3252625/Expensy-MGM");
+        Linkify.addLinks(textGithub_url, Linkify.WEB_URLS);
+
+        TextView textUI_url = view.findViewById(R.id.textUI_url);
+        textUI_url.setText("https://dribbble.com/shots/11123324-Notes-App");
+        Linkify.addLinks(textUI_url, Linkify.WEB_URLS);
+
+        TextView textFonts_url = view.findViewById(R.id.textFonts_url);
+        textFonts_url.setText("https://fonts.google.com/specimen/Ubuntu");
+        Linkify.addLinks(textFonts_url, Linkify.WEB_URLS);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_app, container, false);
+        return view;
     }
 }

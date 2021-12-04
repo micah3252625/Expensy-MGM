@@ -27,4 +27,27 @@
     <string name="mark_barroquillo">Mark Barroquillo</string>
     <string name="add_category">Add Category</string>
     <string name="enter_category">Enter Category</string>
+    <string name="app_des">
+        \"The easiest way of becoming bankrupt is by not paying attention to your expenses.\"  Tracking our spending  will let you know where your money goes and ensure that your money is being used wisely.
+    </string>
+    <string name="app_des2">
+        As our help provides basic features in order for you to keep track on your spending.
+
+    </string>
+    <string name="app_des2_1">
+         - It allows you to add your income and expenses that will able you to track and breakdown where your money went.
+    </string>
+    <string name="app_des2_2">
+         - It allows you to search specific expenses if the list is too long and you\'re having a hard time finding the specific expenses.
+    </string>
+    <string name="app_des2_3">
+         - If you are worried you inputted wrong information of your expenses and income, worry no more as our application allows you to edit.
+    </string>
+    <string name="project_in_android_programming_2">Project in Android Programming 2</string>
+    <string name="s_y_2021_2022">S.Y 2021-2022</string>
+    <string name="fonts">Fonts[Ubuntu]:</string>
+    <string name="ui_concept">UI Concept:</string>
+    <string name="source_code">Source Code:</string>
+    <string name="for_more_information">For more information</string>
+
 </resources>

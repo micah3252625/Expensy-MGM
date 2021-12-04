@@ -1,17 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".fragments.AboutApp">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:fillViewport="true"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/_10sdp">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:textColor="@color/colorWhite"
-        android:gravity="center"/>
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".fragments.AboutApp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/app_des"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:text="@string/app_des"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/app_des2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:text="@string/app_des2"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_des"/>
+
+        <TextView
+            android:id="@+id/app_des2_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:text="@string/app_des2_1"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_des2"/>
+
+        <TextView
+            android:id="@+id/app_des2_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:text="@string/app_des2_2"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_des2_1"/>
+
+        <TextView
+            android:id="@+id/app_des2_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:text="@string/app_des2_3"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_des2_2"/>
+
+        <TextView
+            android:id="@+id/more_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:text="@string/for_more_information"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_des2_3"/>
+
+        <TextView
+            android:id="@+id/textSourceCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:text="@string/source_code"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/more_info"/>
+
+        <TextView
+            android:id="@+id/textGithub_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:text="test"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textSourceCode"/>
+
+        <TextView
+            android:id="@+id/textUIConcept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:text="@string/ui_concept"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textGithub_url"/>
+
+        <TextView
+            android:id="@+id/textUI_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:text="test"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textUIConcept"/>
+
+        <TextView
+            android:id="@+id/textFonts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:text="@string/fonts"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textUI_url"/>
+
+
+        <TextView
+            android:id="@+id/textFonts_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_vertical"
+            android:text="test"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textFonts"/>
+
+        <TextView
+            android:id="@+id/textProject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:textSize="@dimen/_16ssp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/project_in_android_programming_2"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textFonts_url"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:textSize="@dimen/_10ssp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/s_y_2021_2022"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textProject"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

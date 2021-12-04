@@ -77,7 +77,7 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
         }
 
         void setExpense(Expense expense) {
-            String strAmount = Double.toString(expense.getAmount());
+            String strAmount = String.format("%,.2f", expense.getAmount());
             textAmount.setText(strAmount);
             if (strAmount.trim().isEmpty()) {
                 textCategory.setVisibility(View.GONE);
