@@ -43,7 +43,7 @@ public class CreateExpenseActivity extends AppCompatActivity {
     private ImageView imageDelete;
 
     private AlertDialog dialogDeleteExpense;
-
+    private MainActivity mainActivity;
     private CategoryDao categoryDao;
     private List<Category> categoryList;
     private ArrayList<String> categories = new ArrayList<>();
@@ -109,6 +109,25 @@ public class CreateExpenseActivity extends AppCompatActivity {
 
     }
 
+    private Double getCurrentIncome() throws ExecutionException, InterruptedException {
+        class GetCurrentIncomeTask extends AsyncTask<Void, Void, Double> {
+            @Override
+            protected Double doInBackground(Void... voids) {
+                Double income = ExpensyDatabase.getExpensyDatabase(getApplicationContext()).incomeDao()
+                        .getCurrentIncome();
+
+                return income;
+            }
+
+            @Override
+            protected void onPostExecute(Double aDouble) {
+                super.onPostExecute(aDouble);
+            }
+        }
+        return new GetCurrentIncomeTask().execute().get();
+    }
+
+
     // this function sets handles the setting of viewing and updating the expense
     private void setViewOrUpdateExpense() {
         inputExpenseAmount.setText(Double.toString(alreadyAvailableExpense.getAmount()));
@@ -172,6 +191,14 @@ public class CreateExpenseActivity extends AppCompatActivity {
     }
 
     private void saveExpense() {
+        Double income = 0.0;
+        try {
+            income = getCurrentIncome();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         // input validation
         if (inputExpenseAmount.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Please input the amount of your expense!", Toast.LENGTH_SHORT).show();
@@ -183,6 +210,10 @@ public class CreateExpenseActivity extends AppCompatActivity {
         }
         else if (inputExpenseDescription.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Please input the description of your expense!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if (parseDouble(inputExpenseAmount.getText().toString().trim()) > income) {
+            Toast.makeText(this, "Not enough income!", Toast.LENGTH_SHORT).show();
             return;
         }
 

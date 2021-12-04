@@ -147,15 +147,13 @@ public class MainActivity extends AppCompatActivity implements ExpenseListener {
         imageAddCategory.setOnClickListener(view -> showAddCategoryDialog());
 
         try {
-            textIncome.setText(Double.toString(getCurrentIncome()));
+            textIncome.setText(String.format("%,.2f", getCurrentIncome()));
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-
-        // This function prepopulate the category database for the default category
 
     }
 
@@ -182,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements ExpenseListener {
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 try {
-                    textIncome.setText(Double.toString(getCurrentIncome()));
+                    textIncome.setText(String.format("%,.2f", getCurrentIncome()));
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -227,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements ExpenseListener {
                 Double income = ExpensyDatabase.getExpensyDatabase(getApplicationContext()).incomeDao()
                         .getCurrentIncome();
 
-                return Math.abs(income);
+                return income;
             }
 
             @Override
@@ -245,24 +243,6 @@ public class MainActivity extends AppCompatActivity implements ExpenseListener {
         intent.putExtra("isViewOrUpdate", true);
         intent.putExtra("expense", expense);
         startActivityForResult(intent, REQUEST_CODE_UPDATE_EXPENSE);
-    }
-
-    private void populateCategory() {
-        class PopulateCategoryTAsk extends AsyncTask<Void, Void, Void> {
-            @Override
-            protected Void doInBackground(final Void... params) {
-                ExpensyDatabase.getExpensyDatabase(getApplicationContext()).categoryDao().insertCategory(new Category("Food"));
-                ExpensyDatabase.getExpensyDatabase(getApplicationContext()).categoryDao().insertCategory(new Category("Gas"));
-                ExpensyDatabase.getExpensyDatabase(getApplicationContext()).categoryDao().insertCategory(new Category("Netflix"));
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-            }
-        }
-        new PopulateCategoryTAsk().execute();
     }
 
     private void getExpenses(final int requestCode, final boolean isExpenseDeleted) {
@@ -428,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements ExpenseListener {
                             protected void onPostExecute(Void aVoid) {
                                 super.onPostExecute(aVoid);
                                 try {
-                                    textIncome.setText(Double.toString(getCurrentIncome()));
+                                    textIncome.setText(String.format("%,.2f", getCurrentIncome()));
                                 } catch (ExecutionException e) {
                                     e.printStackTrace();
                                 } catch (InterruptedException e) {
@@ -457,7 +437,7 @@ public class MainActivity extends AppCompatActivity implements ExpenseListener {
                             protected void onPostExecute(Void aVoid) {
                                 super.onPostExecute(aVoid);
                                 try {
-                                    textIncome.setText(Double.toString(getCurrentIncome()));
+                                    textIncome.setText(String.format("%,.2f", getCurrentIncome()));
                                 } catch (ExecutionException e) {
                                     e.printStackTrace();
                                 } catch (InterruptedException e) {
